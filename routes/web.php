@@ -20,3 +20,4 @@ Route::get('/checkout/complete', [CheckoutController::class, 'complete'])->name(
 Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
 
 Route::any('adminer', '\Aranyasen\LaravelAdminer\AdminerAutologinController@index');
+
