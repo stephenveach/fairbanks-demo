@@ -1,0 +1,12 @@
+name: 'Stephen Veach'
+super: true
+id: 30c30e61-c2e4-4333-bfa1-7a57f22dccc4
+password_hash: $2y$12$s6BgW/EalCMo9GgaY6VcJObvrfD9i9p/MyArUvc3YjYeETPmRrKXe
+preferences:
+  collections:
+    pages:
+      view: tree
+    shop_pages:
+      view: list
+    products:
+      view: list

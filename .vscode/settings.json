@@ -1,0 +1,17 @@
+{
+    "cline.mcpServers": {
+        "statamic": {
+            "command": "php",
+            "args": [
+                "\/Users\/ppdx11649\/PhpstormProjects\/fairbanks2\/artisan",
+                "mcp:start",
+                "statamic"
+            ],
+            "env": {
+                "APP_ENV": "local",
+                "PATH": "\/usr\/local\/bin:\/usr\/bin:\/bin"
+            },
+            "cwd": "\/Users\/ppdx11649\/PhpstormProjects\/fairbanks2"
+        }
+    }
+}

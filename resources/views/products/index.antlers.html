@@ -1,0 +1,113 @@
+{{#
+    @name Products Index
+    @desc Listing page for products with client-side filters.
+#}}
+
+<!-- /products/index.antlers.html -->
+<main id="content" class="page-builder bg-gradient-to-b from-[#f2f8fd] via-[#f7fbff] to-white">
+    <section class="fluid-grid">
+        <div
+            class="span-xl stack-8"
+            x-data="{
+                query: '',
+                status: 'all',
+                featuredOnly: false,
+                matches(product) {
+                    const q = this.query.trim().toLowerCase();
+                    const matchesQuery = !q
+                        || product.title.toLowerCase().includes(q)
+                        || product.model.toLowerCase().includes(q)
+                        || product.family.toLowerCase().includes(q);
+                    const matchesStatus = this.status === 'all' || product.status === this.status;
+                    const matchesFeatured = !this.featuredOnly || product.featured === '1';
+
+                    return matchesQuery && matchesStatus && matchesFeatured;
+                }
+            }"
+        >
+            <header class="stack-3">
+                <h1 class="text-4xl font-semibold tracking-tight text-gray-900">Products</h1>
+                <p class="max-w-3xl text-base text-gray-700">
+                    Browse industrial equipment by model, family, and current lifecycle status.
+                </p>
+            </header>
+
+            <section class="rounded-xl border border-primary/20 bg-[#edf5fc] p-4 md:p-6">
+                <div class="grid gap-4 md:grid-cols-12 md:items-end">
+                    <label class="grid gap-2 md:col-span-6">
+                        <span class="text-sm font-medium text-gray-700">Search</span>
+                        <input
+                            x-model="query"
+                            type="text"
+                            class="w-full rounded-md border-gray-300 bg-white text-sm text-gray-900"
+                            placeholder="Search title, model number, or family"
+                        >
+                    </label>
+
+                    <label class="grid gap-2 md:col-span-3">
+                        <span class="text-sm font-medium text-gray-700">Status</span>
+                        <select x-model="status" class="w-full rounded-md border-gray-300 bg-white text-sm text-gray-900">
+                            <option value="all">All</option>
+                            <option value="active">Active</option>
+                            <option value="coming_soon">Coming soon</option>
+                            <option value="discontinued">Discontinued</option>
+                        </select>
+                    </label>
+
+                    <label class="inline-flex items-center gap-2 md:col-span-3">
+                        <input x-model="featuredOnly" type="checkbox" class="rounded border-gray-300 text-primary">
+                        <span class="text-sm font-medium text-gray-700">Featured only</span>
+                    </label>
+                </div>
+            </section>
+
+            <section class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {{ collection:products sort="title:asc" }}
+                    <article
+                        data-title="{{ title | entities }}"
+                        data-model="{{ model_number | entities }}"
+                        data-family="{{ product_family | entities }}"
+                        data-status="{{ if status }}{{ status }}{{ else }}active{{ /if }}"
+                        data-featured="{{ if featured_product }}1{{ else }}0{{ /if }}"
+                        x-show="matches($el.dataset)"
+                        class="overflow-hidden rounded-xl border border-gray-200 bg-white transition hover:border-primary/35"
+                    >
+                        {{ if primary_image }}
+                            {{ primary_image }}
+                                <img src="{{ url }}" alt="{{ if alt }}{{ alt }}{{ else }}{{ title }}{{ /if }}" class="h-56 w-full object-cover">
+                            {{ /primary_image }}
+                        {{ /if }}
+
+                        <div class="stack-3 p-4">
+                            <p class="text-xs font-medium uppercase tracking-wide text-gray-500">{{ product_family }}</p>
+                            <h2 class="text-xl font-semibold text-gray-900">
+                                <a href="{{ url }}" class="hover:text-primary">{{ title }}</a>
+                            </h2>
+                            <p class="text-sm text-gray-600">Model: {{ model_number }}</p>
+                            <p class="text-base font-semibold text-gray-900">${{ price }}</p>
+
+                            {{ if short_description }}
+                                <p class="text-sm text-gray-700">{{ short_description }}</p>
+                            {{ /if }}
+
+                            <div class="flex flex-wrap items-center gap-3">
+                                <a href="{{ url }}" class="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80">
+                                    View details
+                                </a>
+                                <form method="POST" action="/cart/items">
+                                    <input type="hidden" name="_token" value="{{ csrf_token }}">
+                                    <input type="hidden" name="product_slug" value="{{ slug }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="inline-flex rounded-md bg-primary px-3 py-1.5 text-xs font-semibold text-white hover:bg-primary/90">
+                                        Add to cart
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </article>
+                {{ /collection:products }}
+            </section>
+        </div>
+    </section>
+</main>
+<!-- End: /products/index.antlers.html -->

@@ -1,0 +1,190 @@
+title: 'Hub Page'
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        display: Hero
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              input_type: text
+              localizable: true
+              listable: true
+              display: Title
+              validate:
+                - required
+          -
+            handle: hero_kicker
+            field:
+              type: text
+              display: Kicker
+          -
+            handle: hero_headline
+            field:
+              type: text
+              display: Headline
+              validate:
+                - required
+          -
+            handle: hero_intro
+            field:
+              type: textarea
+              display: Intro
+              instructions: 'Short intro paragraph under the headline.'
+          -
+            handle: hero_image
+            field:
+              type: assets
+              display: 'Hero Image'
+              max_files: 1
+              container: images
+              mode: list
+      -
+        display: 'Section Navigation'
+        fields:
+          -
+            handle: section_cards_heading
+            field:
+              type: text
+              display: Heading
+              default: 'Browse Resources'
+          -
+            handle: section_cards_intro
+            field:
+              type: textarea
+              display: Intro
+          -
+            handle: section_cards
+            field:
+              type: replicator
+              display: Cards
+              min_sets: 1
+              max_sets: 12
+              sets:
+                card:
+                  display: Card
+                  fields:
+                    -
+                      handle: title
+                      field:
+                        type: text
+                        display: Title
+                        validate:
+                          - required
+                    -
+                      handle: description
+                      field:
+                        type: textarea
+                        display: Description
+                    -
+                      handle: link_text
+                      field:
+                        type: text
+                        display: 'Link Text'
+                    -
+                      handle: link_url
+                      field:
+                        type: link
+                        display: 'Link URL'
+                    -
+                      handle: icon
+                      field:
+                        type: select
+                        display: Icon
+                        options:
+                          support: Support
+                          search: Search
+                          download: Download
+                          service: Service
+                          document: Document
+                          media: Media
+                          certification: Certification
+                          tools: Tools
+      -
+        display: 'Contact CTA'
+        fields:
+          -
+            handle: cta_heading
+            field:
+              type: text
+              display: Heading
+          -
+            handle: cta_body
+            field:
+              type: textarea
+              display: Body
+          -
+            handle: cta_primary_text
+            field:
+              type: text
+              display: 'Primary CTA Text'
+          -
+            handle: cta_primary_link
+            field:
+              type: link
+              display: 'Primary CTA Link'
+          -
+            handle: cta_secondary_text
+            field:
+              type: text
+              display: 'Secondary CTA Text'
+          -
+            handle: cta_secondary_link
+            field:
+              type: link
+              display: 'Secondary CTA Link'
+
+  seo:
+    display: SEO
+    sections:
+      -
+        display: Basic
+        instructions: 'Basic SEO settings.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_basic'
+      -
+        display: Advanced
+        instructions: 'Advanced SEO settings.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_advanced'
+      -
+        display: 'Open Graph'
+        instructions: 'Open Graph meta tags for social sharing.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_open_graph'
+      -
+        display: Sitemap
+        instructions: 'Sitemap configuration.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_sitemap'
+      -
+        display: 'JSON-ld Schema'
+        instructions: 'Custom JSON-ld schema objects.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_jsonld'
+
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        display: Meta
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate:
+                - required
+              generate: true
+              listable: hidden
+              display: Slug

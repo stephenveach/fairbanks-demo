@@ -1,0 +1,108 @@
+# Statamic MCP Server Integration
+
+This project uses Statamic MCP Server for enhanced AI-assisted development.
+
+## MCP Server Configuration
+- Command: php artisan mcp:start statamic
+- Project Path: /Users/ppdx11649/PhpstormProjects/fairbanks2
+- Tools Available: 8 MCP tools (Router Architecture)
+
+## MCP Tools Architecture (Router-Based)
+
+### 🚦 Domain Routers (6 Core Tools)
+
+#### statamic.content
+**Purpose**: Unified content management across all content types
+**Actions**: list, get, create, update, delete, publish, unpublish, search
+**Handles**: entries (15+ ops), terms (10+ ops), globals (10+ ops)
+**Example**: `{"action": "list", "type": "entries", "collection": "blog"}`
+
+#### statamic.structures
+**Purpose**: Manage all structural elements of your Statamic site
+**Actions**: list, get, create, update, delete, reorder
+**Handles**: collections (8+ ops), taxonomies (7+ ops), navigations (6+ ops), sites (5+ ops)
+**Example**: `{"action": "create", "type": "collection", "handle": "products"}`
+
+#### statamic.assets
+**Purpose**: Complete asset and media file management
+**Actions**: list, upload, move, rename, delete, metadata, regenerate
+**Handles**: containers (5+ ops), assets (15+ ops)
+**Example**: `{"action": "upload", "container": "images", "file": "..."}`
+
+#### statamic.users
+**Purpose**: User, role, and permission management
+**Actions**: list, get, create, update, delete, assign-role, permissions
+**Handles**: users (10+ ops), roles (8+ ops), user groups (6+ ops)
+**Example**: `{"action": "assign-role", "user": "123", "role": "editor"}`
+
+#### statamic.system
+**Purpose**: System operations and maintenance
+**Actions**: info, cache-clear, cache-warm, health-check, config, discover
+**Handles**: cache (5+ ops), health (3+ ops), config (4+ ops), info (3+ ops)
+**Example**: `{"action": "cache-clear", "types": ["stache", "static"]}`
+
+#### statamic.blueprints
+**Purpose**: Blueprint schema management and type generation
+**Actions**: list, get, create, update, delete, scan, generate, types
+**Handles**: all blueprint operations (10+ ops)
+**Example**: `{"action": "generate", "type": "typescript", "blueprint": "article"}`
+
+### 🎓 Agent Education Tools (2 Specialized Tools)
+
+#### statamic.system.discover
+**Purpose**: Help AI agents discover the right tools for their intent
+**Features**:
+- Intent-based tool recommendations
+- Usage examples for common workflows
+- Tool capability search
+**Example**: `{"intent": "create a blog", "context": "new project"}`
+
+#### statamic.system.schema
+**Purpose**: Detailed schema inspection for any tool
+**Features**:
+- Complete parameter documentation
+- Valid value enumerations
+- Response format examples
+**Example**: `{"tool": "statamic.content", "action": "create"}`
+
+## Development Guidelines
+
+### Router Pattern Usage
+
+1. **Start with Discovery**:
+   - Use `statamic.system.discover` to find the right tool for your intent
+   - Use `statamic.system.schema` to understand tool parameters and responses
+   - Use `statamic.system` with action "info" for installation details
+
+2. **Router Pattern Syntax**:
+   - Each router handles multiple related operations via the "action" parameter
+   - Always specify both "action" and relevant type/target parameters
+   - Example: `{"action": "list", "type": "entries", "collection": "blog"}`
+
+3. **Content Operations**:
+   - Use `statamic.content` for all entry, term, and global value operations
+   - Use `statamic.structures` for collections, taxonomies, navigations
+   - Use `statamic.blueprints` for schema management and type generation
+
+4. **Performance & Best Practices**:
+   - Router tools consolidate operations for better performance
+   - Automatic cache clearing after structural changes
+   - Pagination support with limit and offset parameters
+   - Dry-run support for safe testing of modifications
+
+### Code Quality Rules
+- No inline PHP in Blade templates
+- No direct facade calls (Statamic, DB, Http, Cache) in views
+- Always include alt text for images
+- Use descriptive link text for accessibility
+- Prefer Statamic components and tags
+
+### Field Type Categories
+- **Text**: text, textarea, markdown, code
+- **Rich Content**: bard, redactor
+- **Media**: assets, video
+- **Relationships**: entries, taxonomy, users, collections
+- **Structured Data**: replicator, grid, group, yaml, array
+- **Special**: date, color, toggle, select, range
+
+When suggesting Statamic implementations, always reference MCP tools and follow these patterns.

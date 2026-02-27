@@ -1,0 +1,187 @@
+title: 'Section Page'
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        display: Hero
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              input_type: text
+              localizable: true
+              listable: true
+              display: Title
+              validate:
+                - required
+          -
+            handle: page_kicker
+            field:
+              type: text
+              display: Kicker
+          -
+            handle: page_headline
+            field:
+              type: text
+              display: Headline
+              validate:
+                - required
+          -
+            handle: page_intro
+            field:
+              type: textarea
+              display: Intro
+          -
+            handle: hero_image
+            field:
+              type: assets
+              display: 'Hero Image'
+              max_files: 1
+              container: images
+              mode: list
+      -
+        display: 'Primary Action'
+        fields:
+          -
+            handle: action_heading
+            field:
+              type: text
+              display: Heading
+          -
+            handle: action_body
+            field:
+              type: textarea
+              display: Body
+          -
+            handle: action_button_text
+            field:
+              type: text
+              display: 'Button Text'
+          -
+            handle: action_button_link
+            field:
+              type: link
+              display: 'Button Link'
+      -
+        display: 'Listing / Resource Area'
+        fields:
+          -
+            handle: listing_heading
+            field:
+              type: text
+              display: Heading
+          -
+            handle: listing_intro
+            field:
+              type: textarea
+              display: Intro
+          -
+            handle: listing_mode
+            field:
+              type: select
+              display: 'Listing Mode'
+              default: cards
+              options:
+                cards: 'Card Listing'
+                table: 'Table Listing'
+                search: 'Search + Listing'
+          -
+            handle: resource_items
+            field:
+              type: replicator
+              display: 'Resource Items'
+              sets:
+                resource_item:
+                  display: Item
+                  fields:
+                    -
+                      handle: title
+                      field:
+                        type: text
+                        display: Title
+                    -
+                      handle: summary
+                      field:
+                        type: textarea
+                        display: Summary
+                    -
+                      handle: link_text
+                      field:
+                        type: text
+                        display: 'Link Text'
+                    -
+                      handle: link_url
+                      field:
+                        type: link
+                        display: 'Link URL'
+      -
+        display: 'Supporting Content'
+        fields:
+          -
+            handle: supporting_notes
+            field:
+              type: bard
+              display: 'Supporting Notes'
+              buttons:
+                - h2
+                - h3
+                - bold
+                - italic
+                - unorderedlist
+                - orderedlist
+                - quote
+                - link
+
+  seo:
+    display: SEO
+    sections:
+      -
+        display: Basic
+        instructions: 'Basic SEO settings.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_basic'
+      -
+        display: Advanced
+        instructions: 'Advanced SEO settings.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_advanced'
+      -
+        display: 'Open Graph'
+        instructions: 'Open Graph meta tags for social sharing.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_open_graph'
+      -
+        display: Sitemap
+        instructions: 'Sitemap configuration.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_sitemap'
+      -
+        display: 'JSON-ld Schema'
+        instructions: 'Custom JSON-ld schema objects.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_jsonld'
+
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        display: Meta
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate:
+                - required
+              generate: true
+              listable: hidden
+              display: Slug

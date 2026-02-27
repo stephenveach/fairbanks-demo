@@ -1,0 +1,291 @@
+title: Product
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        display: 'Core information'
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              input_type: text
+              localizable: true
+              listable: true
+              display: Title
+              validate:
+                - required
+          -
+            handle: model_number
+            field:
+              type: text
+              input_type: text
+              required: true
+              localizable: true
+              listable: true
+              display: 'Model number'
+              instructions: 'Manufacturer model or SKU identifier.'
+              validate:
+                - required
+          -
+            handle: price
+            field:
+              type: float
+              required: true
+              localizable: false
+              listable: true
+              display: Price
+              instructions: 'Base product price in USD.'
+              validate:
+                - required
+                - numeric
+                - min:0.01
+          -
+            handle: product_family
+            field:
+              type: text
+              input_type: text
+              localizable: true
+              listable: true
+              display: 'Product family'
+          -
+            handle: status
+            field:
+              type: select
+              localizable: false
+              listable: true
+              default: active
+              display: Status
+              options:
+                active: Active
+                discontinued: Discontinued
+                coming_soon: 'Coming soon'
+          -
+            handle: featured_product
+            field:
+              type: toggle
+              localizable: false
+              listable: true
+              default: false
+              display: 'Featured product'
+      -
+        display: Content
+        fields:
+          -
+            handle: short_description
+            field:
+              type: textarea
+              localizable: true
+              listable: false
+              display: 'Short description'
+              instructions: 'A concise summary used in product listings and previews.'
+          -
+            handle: overview
+            field:
+              buttons:
+                - h2
+                - h3
+                - bold
+                - italic
+                - unorderedlist
+                - orderedlist
+                - removeformat
+                - anchor
+              link_noopener: true
+              container: files
+              fullscreen: false
+              allow_source: true
+              type: bard
+              replicator_preview: false
+              localizable: true
+              display: Overview
+              always_save: false
+              remove_empty_nodes: true
+              smart_typography: true
+          -
+            handle: applications
+            field:
+              buttons:
+                - h3
+                - bold
+                - italic
+                - unorderedlist
+                - orderedlist
+                - removeformat
+                - anchor
+              link_noopener: true
+              container: files
+              fullscreen: false
+              allow_source: true
+              type: bard
+              replicator_preview: false
+              localizable: true
+              display: Applications
+              always_save: false
+              remove_empty_nodes: true
+              smart_typography: true
+      -
+        display: Media
+        fields:
+          -
+            handle: primary_image
+            field:
+              container: images
+              max_files: 1
+              type: assets
+              localizable: true
+              listable: hidden
+              display: 'Primary image'
+              always_save: false
+          -
+            handle: gallery_images
+            field:
+              container: images
+              type: assets
+              localizable: true
+              listable: hidden
+              mode: grid
+              display: 'Gallery images'
+              always_save: false
+          -
+            handle: downloadable_files
+            field:
+              container: files
+              type: assets
+              localizable: true
+              listable: hidden
+              mode: list
+              display: 'Downloadable files'
+              instructions: 'Technical sheets, manuals, certifications, and brochures.'
+              always_save: false
+      -
+        display: Specifications
+        fields:
+          -
+            handle: key_features
+            field:
+              type: grid
+              localizable: true
+              listable: hidden
+              display: 'Key features'
+              fields:
+                -
+                  handle: feature
+                  field:
+                    type: text
+                    input_type: text
+                    display: Feature
+                    validate:
+                      - required
+          -
+            handle: technical_specifications
+            field:
+              type: grid
+              localizable: true
+              listable: hidden
+              display: 'Technical specifications'
+              fields:
+                -
+                  handle: specification
+                  field:
+                    type: text
+                    input_type: text
+                    display: Specification
+                    validate:
+                      - required
+                -
+                  handle: value
+                  field:
+                    type: text
+                    input_type: text
+                    display: Value
+                    validate:
+                      - required
+                -
+                  handle: unit
+                  field:
+                    type: text
+                    input_type: text
+                    display: Unit
+          -
+            handle: operating_conditions
+            field:
+              type: textarea
+              localizable: true
+              listable: hidden
+              display: 'Operating conditions'
+              instructions: 'Optional environmental, temperature, pressure, or duty-cycle notes.'
+      -
+        display: 'Call to action'
+        fields:
+          -
+            handle: call_to_action_label
+            field:
+              type: text
+              input_type: text
+              localizable: true
+              listable: hidden
+              display: 'Call to action label'
+          -
+            handle: call_to_action_url
+            field:
+              type: link
+              localizable: true
+              listable: hidden
+              display: 'Call to action URL'
+      -
+        display: 'Page builder'
+        fields:
+          -
+            import: page_builder
+  seo:
+    display: SEO
+    sections:
+      -
+        display: Basic
+        instructions: 'Basic SEO settings.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_basic'
+      -
+        display: Advanced
+        instructions: 'Advanced SEO settings.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_advanced'
+      -
+        display: 'Open Graph'
+        instructions: 'Open Graph meta tags for social sharing.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_open_graph'
+      -
+        display: Sitemap
+        instructions: 'Sitemap configuration.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_sitemap'
+      -
+        display: 'JSON-ld Schema'
+        instructions: 'Custom JSON-ld schema objects.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_jsonld'
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        display: Meta
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate:
+                - required
+              generate: true
+              listable: hidden
+              display: Slug

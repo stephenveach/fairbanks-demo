@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "laravel-boost": {
+      "command": "/Users/ppdx11649/Library/Application Support/Herd/bin/php85",
+      "args": [
+        "/Users/ppdx11649/PhpstormProjects/fairbanks2/artisan",
+        "boost:mcp"
+      ]
+    },
+    "herd": {
+      "command": "/Users/ppdx11649/Library/Application Support/Herd/bin/php85",
+      "args": [
+        "/Applications/Herd.app/Contents/Resources/herd-mcp.phar"
+      ],
+      "env": {
+        "SITE_PATH": "/Users/ppdx11649/PhpstormProjects/fairbanks2"
+      }
+    }
+  }
+}

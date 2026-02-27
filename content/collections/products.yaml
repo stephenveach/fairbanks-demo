@@ -1,0 +1,6 @@
+title: Products
+template: product
+layout: layout
+revisions: false
+route: '/products/{slug}'
+sort_dir: asc

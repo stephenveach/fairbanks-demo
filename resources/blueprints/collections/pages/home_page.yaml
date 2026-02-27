@@ -1,0 +1,386 @@
+title: 'Home Page'
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        display: Hero
+        fields:
+          -
+            handle: hero_kicker
+            field:
+              type: text
+              display: Kicker
+              instructions: 'Short positioning line above the headline.'
+          -
+            handle: hero_headline
+            field:
+              type: text
+              display: Headline
+              validate:
+                - required
+          -
+            handle: hero_subheadline
+            field:
+              type: textarea
+              display: Subheadline
+              character_limit: 240
+              instructions: 'One to two concise lines.'
+          -
+            handle: hero_primary_cta_text
+            field:
+              type: text
+              display: 'Primary CTA Text'
+          -
+            handle: hero_primary_cta_link
+            field:
+              type: link
+              display: 'Primary CTA Link'
+          -
+            handle: hero_secondary_cta_text
+            field:
+              type: text
+              display: 'Secondary CTA Text'
+          -
+            handle: hero_secondary_cta_link
+            field:
+              type: link
+              display: 'Secondary CTA Link'
+          -
+            handle: hero_image
+            field:
+              type: assets
+              display: 'Hero Image'
+              max_files: 1
+              container: images
+              mode: list
+              instructions: 'Foreground image for the hero section.'
+          -
+            handle: hero_background_image
+            field:
+              type: assets
+              display: 'Hero Background Image'
+              max_files: 1
+              container: images
+              mode: list
+              instructions: 'Optional background image shown behind hero content.'
+
+      -
+        display: 'Featured Innovation'
+        fields:
+          -
+            handle: innovation_heading
+            field:
+              type: text
+              display: Heading
+              default: 'Featured Innovation'
+          -
+            handle: innovation_items
+            field:
+              type: replicator
+              display: 'Innovation Items'
+              max_sets: 2
+              sets:
+                innovation_item:
+                  display: Item
+                  fields:
+                    -
+                      handle: title
+                      field:
+                        type: text
+                        display: Title
+                        validate:
+                          - required
+                    -
+                      handle: description
+                      field:
+                        type: textarea
+                        display: Description
+                        validate:
+                          - required
+                    -
+                      handle: link_text
+                      field:
+                        type: text
+                        display: 'Link Text'
+                    -
+                      handle: link_url
+                      field:
+                        type: link
+                        display: 'Link URL'
+                    -
+                      handle: image
+                      field:
+                        type: assets
+                        display: Image
+                        max_files: 1
+                        container: images
+                        mode: list
+
+      -
+        display: 'Quick Links'
+        fields:
+          -
+            handle: quick_links_heading
+            field:
+              type: text
+              display: Heading
+              default: 'Quick Links'
+          -
+            handle: quick_links
+            field:
+              type: replicator
+              display: Links
+              min_sets: 6
+              max_sets: 8
+              sets:
+                quick_link:
+                  display: Link
+                  fields:
+                    -
+                      handle: label
+                      field:
+                        type: text
+                        display: Label
+                        validate:
+                          - required
+                    -
+                      handle: url
+                      field:
+                        type: link
+                        display: URL
+                    -
+                      handle: icon
+                      field:
+                        type: select
+                        display: Icon
+                        options:
+                          product: Product
+                          quote: Quote
+                          location: Location
+                          manual: Manual
+                          service: Service
+                          support: Support
+                          contact: Contact
+                          search: Search
+
+      -
+        display: 'What We Do'
+        fields:
+          -
+            handle: what_we_do_heading
+            field:
+              type: text
+              display: Heading
+          -
+            handle: what_we_do_items
+            field:
+              type: replicator
+              display: Items
+              min_sets: 2
+              max_sets: 2
+              sets:
+                item:
+                  display: Item
+                  fields:
+                    -
+                      handle: title
+                      field:
+                        type: text
+                        display: Title
+                        validate:
+                          - required
+                    -
+                      handle: description
+                      field:
+                        type: textarea
+                        display: Description
+                    -
+                      handle: link_text
+                      field:
+                        type: text
+                        display: 'Link Text'
+                    -
+                      handle: link_url
+                      field:
+                        type: link
+                        display: 'Link URL'
+
+      -
+        display: 'Industries / Use Cases'
+        fields:
+          -
+            handle: industries_heading
+            field:
+              type: text
+              display: Heading
+          -
+            handle: industries
+            field:
+              type: replicator
+              display: Industries
+              min_sets: 6
+              max_sets: 10
+              sets:
+                industry:
+                  display: Industry
+                  fields:
+                    -
+                      handle: label
+                      field:
+                        type: text
+                        display: Label
+                        validate:
+                          - required
+                    -
+                      handle: url
+                      field:
+                        type: link
+                        display: URL
+
+      -
+        display: 'Trust / Proof'
+        fields:
+          -
+            handle: trust_heading
+            field:
+              type: text
+              display: Heading
+          -
+            handle: trust_stats
+            field:
+              type: replicator
+              display: 'Trust Stats'
+              min_sets: 3
+              max_sets: 4
+              sets:
+                stat:
+                  display: Stat
+                  fields:
+                    -
+                      handle: stat_value
+                      field:
+                        type: text
+                        display: Value
+                        validate:
+                          - required
+                    -
+                      handle: stat_label
+                      field:
+                        type: text
+                        display: Label
+                        validate:
+                          - required
+          -
+            handle: certifications_or_logos
+            field:
+              type: assets
+              display: 'Certifications or Logos'
+              container: images
+              mode: list
+              max_files: 6
+
+      -
+        display: 'Contact CTA Band'
+        fields:
+          -
+            handle: cta_band_heading
+            field:
+              type: text
+              display: Heading
+          -
+            handle: cta_band_body
+            field:
+              type: textarea
+              display: Body
+          -
+            handle: cta_band_primary_cta_text
+            field:
+              type: text
+              display: 'Primary CTA Text'
+          -
+            handle: cta_band_primary_cta_link
+            field:
+              type: link
+              display: 'Primary CTA Link'
+          -
+            handle: cta_band_secondary_cta_text
+            field:
+              type: text
+              display: 'Secondary CTA Text'
+          -
+            handle: cta_band_secondary_cta_link
+            field:
+              type: link
+              display: 'Secondary CTA Link'
+
+      -
+        display: 'Footer Contact Snippet'
+        fields:
+          -
+            handle: phone
+            field:
+              type: text
+              display: Phone
+          -
+            handle: address_lines
+            field:
+              type: textarea
+              display: 'Address Lines'
+              instructions: 'Use one line per row.'
+          -
+            handle: general_contact_link
+            field:
+              type: link
+              display: 'General Contact Link'
+
+  seo:
+    display: SEO
+    sections:
+      -
+        display: Basic
+        instructions: 'Basic SEO settings.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_basic'
+      -
+        display: Advanced
+        instructions: 'Advanced SEO settings.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_advanced'
+      -
+        display: 'Open Graph'
+        instructions: 'Open Graph meta tags for social sharing.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_open_graph'
+      -
+        display: Sitemap
+        instructions: 'Sitemap configuration.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_sitemap'
+      -
+        display: 'JSON-ld Schema'
+        instructions: 'Custom JSON-ld schema objects.'
+        fields:
+          -
+            import: 'statamic-peak-seo::seo_jsonld'
+
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        display: Meta
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: true
+              validate:
+                - required
+              generate: true
+              listable: hidden
+              display: Slug

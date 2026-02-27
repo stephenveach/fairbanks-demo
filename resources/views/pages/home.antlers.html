@@ -1,0 +1,269 @@
+<main id="content" class="bg-gradient-to-b from-[#e6f3ff] via-[#f4f9ff] to-[#fffaf3] text-slate-900">
+    <section class="relative overflow-hidden border-b border-primary/20 bg-gradient-to-br from-white via-[#f1f8ff] to-[#e7f4ff]">
+        <div class="pointer-events-none absolute -left-12 top-8 h-48 w-48 rounded-full bg-[#7cc0ff]/35 blur-3xl"></div>
+        <div class="pointer-events-none absolute -right-16 top-20 h-56 w-56 rounded-full bg-[#3aa3ff]/25 blur-3xl"></div>
+        <div class="pointer-events-none absolute bottom-4 left-1/3 h-36 w-36 rounded-full bg-[#ffd48a]/40 blur-3xl"></div>
+
+        {{ if hero_background_image }}
+            <div class="pointer-events-none absolute inset-0 opacity-25 mix-blend-multiply">
+                {{ hero_background_image }}
+                    <img src="{{ url }}" alt="" class="h-full w-full object-cover" />
+                {{ /hero_background_image }}
+            </div>
+        {{ /if }}
+
+        <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+            <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+                <div class="relative">
+                    {{ if hero_kicker }}
+                        <p class="mb-4 inline-flex rounded-full border border-primary/20 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-primary backdrop-blur">{{ hero_kicker }}</p>
+                    {{ /if }}
+
+                    <h1 class="text-4xl font-semibold leading-tight text-slate-950 sm:text-5xl lg:text-6xl">{{ hero_headline }}</h1>
+
+                    {{ if hero_subheadline }}
+                        <p class="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">{{ hero_subheadline }}</p>
+                    {{ /if }}
+
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        {{ if hero_primary_cta_text && hero_primary_cta_link }}
+                            <a
+                                href="{{ hero_primary_cta_link }}"
+                                class="inline-flex items-center rounded-md bg-gradient-to-r from-primary to-sky-500 px-5 py-3 text-sm font-semibold text-white shadow-md shadow-primary/20 transition hover:from-primary/90 hover:to-sky-500/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                            >
+                                {{ hero_primary_cta_text }}
+                            </a>
+                        {{ /if }}
+
+                        {{ if hero_secondary_cta_text && hero_secondary_cta_link }}
+                            <a
+                                href="{{ hero_secondary_cta_link }}"
+                                class="inline-flex items-center rounded-md border border-sky-200 bg-white/90 px-5 py-3 text-sm font-semibold text-slate-900 transition hover:border-sky-400 hover:bg-sky-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                            >
+                                {{ hero_secondary_cta_text }}
+                            </a>
+                        {{ /if }}
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border border-sky-100 bg-white/70 p-4 shadow-xl shadow-sky-100/80 backdrop-blur lg:p-6">
+                    {{ if hero_image }}
+                        {{ hero_image }}
+                            <img
+                                src="{{ url }}"
+                                alt="{{ alt ?? hero_headline }}"
+                                class="h-[320px] w-full rounded-xl object-cover ring-1 ring-black/5 sm:h-[380px] lg:h-[440px]"
+                                loading="eager"
+                            />
+                        {{ /hero_image }}
+                    {{ else }}
+                        <div class="flex h-[320px] items-center justify-center rounded-xl border border-dashed border-slate-300 bg-white text-sm text-slate-500 sm:h-[380px] lg:h-[440px]">
+                            Add a hero image in the Control Panel.
+                        </div>
+                    {{ /if }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        {{ if innovation_heading }}
+            <h2 class="text-2xl font-semibold text-slate-950 sm:text-3xl">{{ innovation_heading }}</h2>
+        {{ /if }}
+
+        <div class="mt-8 grid gap-6 lg:grid-cols-2">
+            {{ innovation_items }}
+                <article class="group overflow-hidden rounded-2xl border border-sky-100 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-sky-300 hover:shadow-lg hover:shadow-sky-100/80">
+                    {{ if image }}
+                        {{ image }}
+                            <div class="relative">
+                                <img src="{{ url }}" alt="{{ alt ?? title }}" class="h-56 w-full object-cover" loading="lazy" />
+                                <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/35 to-transparent"></div>
+                            </div>
+                        {{ /image }}
+                    {{ /if }}
+
+                    <div class="bg-gradient-to-b from-white to-[#f5faff] p-6">
+                        <h3 class="text-xl font-semibold text-slate-950">{{ title }}</h3>
+                        <p class="mt-3 text-sm leading-7 text-slate-700">{{ description }}</p>
+
+                        {{ if link_text && link_url }}
+                            <a
+                                href="{{ link_url }}"
+                                class="mt-5 inline-flex items-center text-sm font-semibold text-primary transition group-hover:text-primary/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                            >
+                                {{ link_text }}
+                                <span aria-hidden="true" class="ml-1">&rarr;</span>
+                            </a>
+                        {{ /if }}
+                    </div>
+                </article>
+            {{ /innovation_items }}
+        </div>
+    </section>
+
+    <section class="border-y border-sky-100 bg-gradient-to-b from-white to-[#edf7ff]">
+        <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+            {{ if quick_links_heading }}
+                <h2 class="text-2xl font-semibold text-slate-950 sm:text-3xl">{{ quick_links_heading }}</h2>
+            {{ /if }}
+
+            <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {{ quick_links }}
+                    <a
+                        href="{{ url }}"
+                        class="group flex items-center justify-between rounded-xl border border-sky-100 bg-white/90 p-4 text-sm font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/35 hover:bg-[#eef8ff] hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                    >
+                        <span>{{ label }}</span>
+                        <span
+                            class="inline-flex h-9 w-9 items-center justify-center rounded-lg border {{ if icon == "product" }}border-sky-200 bg-sky-100 text-sky-700{{ elseif icon == "quote" }}border-emerald-200 bg-emerald-100 text-emerald-700{{ elseif icon == "location" }}border-orange-200 bg-orange-100 text-orange-700{{ elseif icon == "manual" }}border-violet-200 bg-violet-100 text-violet-700{{ elseif icon == "service" }}border-cyan-200 bg-cyan-100 text-cyan-700{{ elseif icon == "support" }}border-rose-200 bg-rose-100 text-rose-700{{ elseif icon == "contact" }}border-amber-200 bg-amber-100 text-amber-700{{ else }}border-primary/20 bg-white text-primary{{ /if }}"
+                            aria-hidden="true"
+                        >
+                            {{ if icon == "search" }}
+                                {{ svg:search attr:class="h-4 w-4" attr:aria-hidden="true" }}
+                            {{ elseif icon == "product" }}
+                                {{ svg:breakpoint attr:class="h-4 w-4" attr:aria-hidden="true" }}
+                            {{ elseif icon == "quote" }}
+                                {{ svg:email attr:class="h-4 w-4" attr:aria-hidden="true" }}
+                            {{ elseif icon == "location" }}
+                                {{ svg:breakpoint attr:class="h-4 w-4" attr:aria-hidden="true" }}
+                            {{ elseif icon == "manual" }}
+                                {{ svg:breakpoint attr:class="h-4 w-4" attr:aria-hidden="true" }}
+                            {{ elseif icon == "service" }}
+                                {{ svg:breakpoint attr:class="h-4 w-4" attr:aria-hidden="true" }}
+                            {{ elseif icon == "support" }}
+                                {{ svg:cog attr:class="h-4 w-4" attr:aria-hidden="true" }}
+                            {{ elseif icon == "contact" }}
+                                {{ svg:email attr:class="h-4 w-4" attr:aria-hidden="true" }}
+                            {{ else }}
+                                <span class="text-xs font-bold">+</span>
+                            {{ /if }}
+                        </span>
+                    </a>
+                {{ /quick_links }}
+            </div>
+        </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <h2 class="text-2xl font-semibold text-slate-950 sm:text-3xl">{{ what_we_do_heading }}</h2>
+
+        <div class="mt-8 grid gap-6 md:grid-cols-2">
+            {{ what_we_do_items }}
+                <article class="rounded-2xl border border-sky-100 bg-gradient-to-b from-white to-[#f2f9ff] p-6 shadow-sm">
+                    <h3 class="text-xl font-semibold text-slate-950">{{ title }}</h3>
+                    <p class="mt-3 text-sm leading-7 text-slate-700">{{ description }}</p>
+
+                    {{ if link_text && link_url }}
+                        <a
+                            href="{{ link_url }}"
+                            class="mt-5 inline-flex items-center text-sm font-semibold text-primary transition hover:text-primary/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                        >
+                            {{ link_text }}
+                            <span aria-hidden="true" class="ml-1">&rarr;</span>
+                        </a>
+                    {{ /if }}
+                </article>
+            {{ /what_we_do_items }}
+        </div>
+    </section>
+
+    <section class="relative overflow-hidden border-y border-primary/15 bg-gradient-to-r from-[#e7f3ff] via-[#eef8ff] to-[#fff4df]">
+        <div class="pointer-events-none absolute -top-12 right-0 h-40 w-40 rounded-full bg-[#ffd48a]/45 blur-3xl"></div>
+        <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-semibold text-slate-950 sm:text-3xl">{{ industries_heading }}</h2>
+            <div class="mt-6 flex flex-wrap gap-3">
+                {{ industries }}
+                    <a
+                        href="{{ url }}"
+                        class="rounded-full border border-white/90 bg-white/90 px-4 py-2 text-sm font-medium text-slate-800 shadow-sm transition hover:border-sky-300 hover:bg-white hover:text-slate-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                    >
+                        {{ label }}
+                    </a>
+                {{ /industries }}
+            </div>
+        </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-semibold text-slate-950 sm:text-3xl">{{ trust_heading }}</h2>
+
+        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {{ trust_stats }}
+                <div class="rounded-xl border border-sky-100 bg-gradient-to-b from-white to-[#f4faff] p-5 text-center shadow-sm">
+                    <p class="text-3xl font-semibold text-slate-950">{{ stat_value }}</p>
+                    <p class="mt-2 text-sm text-slate-700">{{ stat_label }}</p>
+                </div>
+            {{ /trust_stats }}
+        </div>
+
+        {{ if certifications_or_logos }}
+            <div class="mt-8 flex flex-wrap items-center gap-4 rounded-xl border border-sky-100 bg-white/80 p-4">
+                {{ certifications_or_logos }}
+                    <img src="{{ url }}" alt="{{ alt ?? 'Certification or customer logo' }}" class="h-10 w-auto opacity-90 transition hover:opacity-100" loading="lazy" />
+                {{ /certifications_or_logos }}
+            </div>
+        {{ /if }}
+    </section>
+
+    <section class="bg-gradient-to-r from-primary via-[#0b7dcd] to-[#17a0df]">
+        <div class="mx-auto max-w-7xl px-4 py-12 text-white sm:px-6 lg:flex lg:items-center lg:justify-between lg:gap-8 lg:px-8">
+            <div>
+                <h2 class="text-2xl font-semibold sm:text-3xl">{{ cta_band_heading }}</h2>
+                <p class="mt-3 max-w-2xl text-sm leading-7 text-slate-200">{{ cta_band_body }}</p>
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-3 lg:mt-0">
+                {{ if cta_band_primary_cta_text && cta_band_primary_cta_link }}
+                    <a
+                        href="{{ cta_band_primary_cta_link }}"
+                        class="inline-flex items-center rounded-md bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+                    >
+                        {{ cta_band_primary_cta_text }}
+                    </a>
+                {{ /if }}
+
+                {{ if cta_band_secondary_cta_text && cta_band_secondary_cta_link }}
+                    <a
+                        href="{{ cta_band_secondary_cta_link }}"
+                        class="inline-flex items-center rounded-md border border-white/60 px-5 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b7dcd]"
+                    >
+                        {{ cta_band_secondary_cta_text }}
+                    </a>
+                {{ /if }}
+            </div>
+        </div>
+    </section>
+
+    {{ if phone || address_lines || general_contact_link }}
+        <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+            <div class="grid gap-6 rounded-xl border border-sky-100 bg-white/90 p-6 shadow-sm md:grid-cols-3">
+                {{ if phone }}
+                    <div>
+                        <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500">Phone</h2>
+                        <p class="mt-2 text-lg font-semibold text-slate-900">{{ phone }}</p>
+                    </div>
+                {{ /if }}
+
+                {{ if address_lines }}
+                    <div>
+                        <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500">Address</h2>
+                        <p class="mt-2 whitespace-pre-line text-sm leading-7 text-slate-700">{{ address_lines }}</p>
+                    </div>
+                {{ /if }}
+
+                {{ if general_contact_link }}
+                    <div class="md:justify-self-end">
+                        <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500">General Contact</h2>
+                        <a
+                            href="{{ general_contact_link }}"
+                            class="mt-2 inline-flex items-center rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:border-slate-500 hover:bg-slate-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                        >
+                            Contact our team
+                        </a>
+                    </div>
+                {{ /if }}
+            </div>
+        </section>
+    {{ /if }}
+</main>

@@ -1,0 +1,74 @@
+title: 'Shop Page'
+tabs:
+  main:
+    display: Main
+    sections:
+      -
+        display: Content
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              required: true
+              input_type: text
+              localizable: true
+              listable: true
+              display: Title
+              validate:
+                - required
+          -
+            handle: hero
+            field:
+              type: textarea
+              localizable: true
+              listable: false
+              display: Hero
+              instructions: 'Short intro line shown near the page title.'
+          -
+            handle: sales_message
+            field:
+              type: markdown
+              localizable: true
+              listable: false
+              display: 'Sales message'
+              instructions: 'Promotions, campaign copy, or seasonal offers.'
+          -
+            handle: notification_message
+            field:
+              type: markdown
+              localizable: true
+              listable: false
+              display: 'Notification message'
+              instructions: 'Operational notices like inventory constraints or carrier alerts.'
+          -
+            handle: shipping_delay_message
+            field:
+              type: markdown
+              localizable: true
+              listable: false
+              display: 'Shipping delay message'
+          -
+            handle: body
+            field:
+              type: markdown
+              localizable: true
+              listable: false
+              display: Body
+              instructions: 'General editable page content shown under notices.'
+  sidebar:
+    display: Sidebar
+    sections:
+      -
+        display: Meta
+        fields:
+          -
+            handle: slug
+            field:
+              type: slug
+              localizable: false
+              generate: true
+              validate:
+                - required
+              listable: hidden
+              display: Slug

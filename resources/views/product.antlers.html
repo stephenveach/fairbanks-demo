@@ -1,0 +1,120 @@
+{{#
+    @name Product
+    @desc Template for individual product entries in the Products collection.
+#}}
+
+<!-- /product.antlers.html -->
+<main id="content" class="page-builder bg-gradient-to-b from-[#f2f8fd] via-[#f7fbff] to-white">
+    <section class="fluid-grid">
+        <div class="span-xl grid gap-10 lg:grid-cols-12">
+            <div class="lg:col-span-7 stack-6">
+                <header class="stack-3">
+                    <p class="text-sm font-medium uppercase tracking-wide text-gray-600">{{ product_family }}</p>
+                    <h1 class="text-4xl font-semibold tracking-tight text-gray-900">{{ title }}</h1>
+                    <p class="text-sm text-gray-600">
+                        Model:
+                        <span class="font-medium text-gray-900">{{ model_number }}</span>
+                    </p>
+                    <p class="text-lg font-semibold text-gray-900">${{ price }}</p>
+                    {{ if short_description }}
+                        <p class="text-base text-gray-700">{{ short_description }}</p>
+                    {{ /if }}
+
+                    <form method="POST" action="/cart/items" class="flex items-end gap-3">
+                        <input type="hidden" name="_token" value="{{ csrf_token }}">
+                        <input type="hidden" name="product_slug" value="{{ slug }}">
+                        <label class="grid gap-1">
+                            <span class="text-sm font-medium text-gray-700">Qty</span>
+                            <input type="number" name="quantity" min="1" max="50" value="1" class="w-24 rounded-md border-gray-300 bg-white text-sm text-gray-900">
+                        </label>
+                        <button type="submit" class="inline-flex rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primary/90">
+                            Add to cart
+                        </button>
+                    </form>
+                </header>
+
+                {{ if overview }}
+                    <article class="prose max-w-none">
+                        {{ overview }}
+                    </article>
+                {{ /if }}
+
+                {{ if key_features }}
+                    <section class="stack-3">
+                        <h2 class="text-2xl font-semibold text-gray-900">Key features</h2>
+                        <ul class="grid gap-2 list-disc pl-5 text-gray-700">
+                            {{ key_features }}
+                                <li>{{ feature }}</li>
+                            {{ /key_features }}
+                        </ul>
+                    </section>
+                {{ /if }}
+
+                {{ if applications }}
+                    <section class="stack-3">
+                        <h2 class="text-2xl font-semibold text-gray-900">Applications</h2>
+                        <div class="prose max-w-none">
+                            {{ applications }}
+                        </div>
+                    </section>
+                {{ /if }}
+            </div>
+
+            <aside class="lg:col-span-5 stack-6">
+                {{ if primary_image }}
+                    {{ primary_image }}
+                        <figure class="overflow-hidden rounded-xl border border-gray-200 bg-gray-50">
+                            <img src="{{ url }}" alt="{{ if alt }}{{ alt }}{{ else }}{{ title }}{{ /if }}" class="h-auto w-full object-cover">
+                        </figure>
+                    {{ /primary_image }}
+                {{ /if }}
+
+                {{ if technical_specifications }}
+                    <section class="overflow-hidden rounded-xl border border-gray-200">
+                        <h2 class="border-b border-gray-200 bg-gray-50 px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700">
+                            Technical specifications
+                        </h2>
+                        <dl class="divide-y divide-gray-200 bg-white">
+                            {{ technical_specifications }}
+                                <div class="grid gap-2 px-4 py-3 sm:grid-cols-3">
+                                    <dt class="text-sm font-medium text-gray-700">{{ specification }}</dt>
+                                    <dd class="text-sm text-gray-900 sm:col-span-2">
+                                        {{ value }}{{ if unit }} {{ unit }}{{ /if }}
+                                    </dd>
+                                </div>
+                            {{ /technical_specifications }}
+                        </dl>
+                    </section>
+                {{ /if }}
+
+                {{ if downloadable_files }}
+                    <section class="stack-3">
+                        <h2 class="text-2xl font-semibold text-gray-900">Downloads</h2>
+                        <ul class="grid gap-2">
+                            {{ downloadable_files }}
+                                <li>
+                                    <a href="{{ url }}" class="inline-flex items-center gap-2 text-primary hover:text-primary/80">
+                                        <span>{{ if title }}{{ title }}{{ else }}{{ basename }}{{ /if }}</span>
+                                    </a>
+                                </li>
+                            {{ /downloadable_files }}
+                        </ul>
+                    </section>
+                {{ /if }}
+
+                {{ if call_to_action_label and call_to_action_url }}
+                    <p>
+                        <a href="{{ call_to_action_url }}" class="inline-flex rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primary/90">
+                            {{ call_to_action_label }}
+                        </a>
+                    </p>
+                {{ /if }}
+            </aside>
+        </div>
+    </section>
+
+    {{ page_builder scope="block" }}
+        {{ partial src="page_builder/{type}" }}
+    {{ /page_builder }}
+</main>
+<!-- End: /product.antlers.html -->
