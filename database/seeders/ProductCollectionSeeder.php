@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use Statamic\Facades\Collection;
 use Statamic\Facades\Entry;
 
@@ -65,7 +66,11 @@ class ProductCollectionSeeder extends Seeder
             $entry = Entry::query()
                 ->where('collection', 'products')
                 ->where('slug', $slug)
-                ->first() ?? Entry::make();
+                ->first();
+
+            if (! $entry) {
+                $entry = Entry::make()->id((string) Str::uuid());
+            }
 
             $entry
                 ->collection($collection)

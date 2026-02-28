@@ -16,12 +16,15 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            StatamicContentSeeder::class,
             ProductCollectionSeeder::class,
         ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        if (app()->environment('local')) {
+            User::query()->firstOrCreate(
+                ['email' => 'test@example.com'],
+                ['name' => 'Test User', 'password' => bcrypt('password')]
+            );
+        }
     }
 }
